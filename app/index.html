@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launcher</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #0a0a0c;
+    color: #f2f2f4;
+    font-family: "Samsung One", "SamsungOne", Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    cursor: none;
+  }
+  body {
+    background: radial-gradient(ellipse at 20% 0%, #17171c 0%, #0a0a0c 60%);
+  }
+  .top {
+    position: absolute;
+    top: 7vh;
+    left: 6vw;
+  }
+  .clock {
+    font-size: 9vw;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .date {
+    margin-top: 1.4vh;
+    font-size: 1.6vw;
+    font-weight: 300;
+    color: #8a8a94;
+  }
+  .row {
+    position: absolute;
+    left: 6vw;
+    right: 6vw;
+    bottom: 12vh;
+    display: flex;
+  }
+  .tile {
+    flex: 1;
+    height: 22vh;
+    margin-right: 2vw;
+    border-radius: 1.2vw;
+    background: #141418;
+    border: 0.18vw solid #1f1f25;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .tile:last-child { margin-right: 0; }
+  .tile .bar {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 0.5vh;
+    background: var(--accent);
+    opacity: 0.5;
+    transition: opacity 0.18s ease;
+  }
+  .tile .name {
+    position: absolute;
+    left: 1.8vw;
+    bottom: 2.6vh;
+    font-size: 2vw;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #c9c9d1;
+    transition: color 0.18s ease;
+  }
+  .tile.focus {
+    transform: scale(1.06);
+    background: #1c1c22;
+    border-color: #f2f2f4;
+  }
+  .tile.focus .bar { opacity: 1; }
+  .tile.focus .name { color: #ffffff; }
+  .tile.off { opacity: 0.35; }
+  .status {
+    position: absolute;
+    left: 6vw;
+    bottom: 4vh;
+    font-size: 1vw;
+    color: #6a6a74;
+    min-height: 1.4vw;
+  }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="clock" id="clock">--:--</div>
+    <div class="date" id="date"></div>
+  </div>
+
+  <div class="row" id="row"></div>
+  <div class="status" id="status"></div>
+
+<script>
+(function () {
+  // Written in ES5: the TV's built-in browser engine is old.
+  var SERVICE = 'http://127.0.0.1:8095';
+  var TIZENBREW_WS = 'ws://127.0.0.1:8081';
+
+  // `match` finds the installed app by name; `fallbackId` is used if the
+  // app list can't be read.
+  var TILES = [
+    { name: 'YouTube', label: 'TizenTube', accent: '#ff3d3d', kind: 'module', match: /tizentube/i },
+    { name: 'Netflix', label: 'Netflix', accent: '#e50914', kind: 'app', match: /netflix/i, fallbackId: '3201907018807' },
+    { name: 'Disney+', label: 'Disney+', accent: '#2f6bff', kind: 'app', match: /disney/i, fallbackId: '3201901017640' },
+    { name: 'HBO Max', label: 'HBO Max', accent: '#8a4dff', kind: 'app', match: /hbo|^max$/i }
+  ];
+
+  var focus = 0;
+  var tileEls = [];
+  var modules = [];
+  var ws = null;
+  var statusTimer = null;
+
+  function status(msg, sticky) {
+    var el = document.getElementById('status');
+    el.textContent = msg || '';
+    clearTimeout(statusTimer);
+    if (msg && !sticky) statusTimer = setTimeout(function () { el.textContent = ''; }, 5000);
+  }
+
+  // ---- clock ----
+  var DAYS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  var MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+                'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var d = new Date();
+    document.getElementById('clock').textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
+    var day = DAYS[d.getDay()];
+    document.getElementById('date').textContent =
+      day.charAt(0).toUpperCase() + day.slice(1) + ', ' + d.getDate() + ' de ' + MONTHS[d.getMonth()];
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- tiles ----
+  function render() {
+    var row = document.getElementById('row');
+    for (var i = 0; i < TILES.length; i++) {
+      var t = TILES[i];
+      var el = document.createElement('div');
+      el.className = 'tile';
+      el.style.setProperty('--accent', t.accent);
+      el.innerHTML = '<div class="name"></div><div class="bar"></div>';
+      el.firstChild.textContent = t.label;
+      (function (idx) {
+        el.addEventListener('click', function () { setFocus(idx); open(idx); });
+      })(i);
+      row.appendChild(el);
+      tileEls.push(el);
+    }
+    setFocus(0);
+  }
+
+  function setFocus(i) {
+    focus = (i + TILES.length) % TILES.length;
+    for (var j = 0; j < tileEls.length; j++) {
+      tileEls[j].className = 'tile' + (j === focus ? ' focus' : '') + (TILES[j].missing ? ' off' : '');
+    }
+  }
+
+  // ---- talking to the launcher service ----
+  function get(path, cb) {
+    var x = new XMLHttpRequest();
+    x.open('GET', SERVICE + path);
+    x.timeout = 4000;
+    x.onload = function () {
+      var body = null;
+      try { body = JSON.parse(x.responseText); } catch (e) {}
+      cb(x.status === 200 ? null : (body && body.error) || ('HTTP ' + x.status), body);
+    };
+    x.onerror = x.ontimeout = function () { cb('service not reachable'); };
+    x.send();
+  }
+
+  // The service starts at the same time as this page, so retry for a bit.
+  function resolveApps(attempt) {
+    get('/apps', function (err, list) {
+      if (err) {
+        if (attempt < 15) return setTimeout(function () { resolveApps(attempt + 1); }, 700);
+        status('No se pudo leer la lista de apps (' + err + ')', true);
+        return;
+      }
+      for (var i = 0; i < TILES.length; i++) {
+        var t = TILES[i];
+        if (t.kind !== 'app') continue;
+        for (var j = 0; j < list.length; j++) {
+          if (t.match.test(list[j].name)) { t.id = list[j].id; break; }
+        }
+        if (!t.id && !t.fallbackId) t.missing = true;
+      }
+      setFocus(focus);
+    });
+  }
+
+  // ---- talking to TizenBrew (to start TizenTube) ----
+  function connectTizenBrew() {
+    try { ws = new WebSocket(TIZENBREW_WS); } catch (e) { return; }
+    ws.onopen = function () { ws.send(JSON.stringify({ type: 4 })); }; // GetModules
+    ws.onmessage = function (ev) {
+      var msg;
+      try { msg = JSON.parse(ev.data); } catch (e) { return; }
+      if (msg.type !== 4) return;
+      if (msg.payload === null) {
+        return setTimeout(function () { ws.send(JSON.stringify({ type: 4 })); }, 500);
+      }
+      modules = msg.payload || [];
+      for (var i = 0; i < TILES.length; i++) {
+        var t = TILES[i];
+        if (t.kind !== 'module') continue;
+        t.module = null;
+        for (var j = 0; j < modules.length; j++) {
+          if (t.match.test(modules[j].fullName) || t.match.test(modules[j].appName || '')) {
+            t.module = modules[j];
+            break;
+          }
+        }
+        t.missing = !t.module;
+      }
+      setFocus(focus);
+    };
+    ws.onclose = function () { ws = null; };
+  }
+
+  function open(i) {
+    var t = TILES[i];
+    if (t.kind === 'module') {
+      if (!t.module || !ws) {
+        status('Añade el módulo TizenTube en TizenBrew primero');
+        return;
+      }
+      // Same sequence TizenBrew's own menu uses to start a module.
+      ws.send(JSON.stringify({ type: 5, payload: t.module })); // LaunchModule
+      status('Abriendo ' + t.label + '…', true);
+      setTimeout(function () { location.href = t.module.appPath; }, 200);
+      return;
+    }
+
+    var id = t.id || t.fallbackId;
+    if (!id) {
+      status(t.label + ' no está instalada');
+      return;
+    }
+    status('Abriendo ' + t.label + '…');
+    get('/launch?id=' + encodeURIComponent(id), function (err) {
+      if (err) status('No se pudo abrir ' + t.label + ' (' + err + ')', true);
+    });
+  }
+
+  // ---- remote control ----
+  document.addEventListener('keydown', function (e) {
+    switch (e.keyCode) {
+      case 37: setFocus(focus - 1); break;            // left
+      case 39: setFocus(focus + 1); break;            // right
+      case 13: open(focus); break;                    // OK
+      case 10009: break;                              // Back: stay on the launcher
+      default: return;
+    }
+    e.preventDefault();
+  });
+
+  render();
+  resolveApps(0);
+  connectTizenBrew();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "tizen-launcher",
+  "appName": "Launcher",
+  "version": "1.0.0",
+  "description": "Minimal dark home screen for Samsung Tizen TVs: TizenTube, Netflix, Disney+ and HBO Max.",
+  "packageType": "app",
+  "appPath": "app/index.html",
+  "serviceFile": "service/service.js",
+  "keys": [],
+  "license": "MIT"
+}
