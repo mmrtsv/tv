@@ -167,6 +167,12 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 @media (max-width: 880px) { .soon { grid-template-columns: 1fr; } }
 @media (max-width: 440px) { .soon article { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 14px; } }
 
+.postcard { margin: clamp(56px, 8vw, 96px) 0 0; display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: end; }
+.postcard img { width: 100%; height: auto; padding: 12px 12px 14px; background: #fbfaf6; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 10px 30px rgba(26, 63, 32, .12); transform: rotate(-1.2deg); }
+.postcard figcaption { display: grid; gap: 8px; max-width: 36ch; }
+.postcard p { font-family: var(--display); font-style: italic; font-size: 22px; line-height: 1.4; color: var(--ink); }
+@media (max-width: 760px) { .postcard { grid-template-columns: 1fr; } }
+
 /* History timeline */
 .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); width: 100%; }
 .timeline li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 18px; padding-block: 16px; border-bottom: 1px solid var(--line); }
@@ -363,6 +369,10 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
         </ol>
       </div>
     </div>
+    <figure class="postcard">
+      <img src="img/postal-bedorc.jpg" alt="Postal antiga en blanc i negre d'un carrer del Bedorc amb arbres i balcons" loading="lazy">
+      <figcaption><span class="label">Postal antiga</span><p>El Bedorc, quan els carrers eren de terra i la casa encara vivia de la pagesia.</p></figcaption>
+    </figure>
     <div class="seal-head"><span class="label">El nostre segell</span><h3>Cinc elements del Bedorc</h3></div>
     <div class="symbols">
       <article><span class="label">I</span><h3>Fulla de parra</h3><p>La tradició vitivinícola que ha modelat el paisatge i la vida de la casa durant segles.</p></article>
