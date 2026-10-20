@@ -396,14 +396,14 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
   <div class="wrap">
     <div class="head-row"><div><span class="label">Galeria</span><h2>La casa en imatges</h2></div></div>
     <div class="gallery" id="gallery" data-set="gal">
-      <button class="g1" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llit.jpg" alt="Habitació amb llit de forja" loading="lazy"></div></button>
+      <button class="g1" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/escala-entrada.jpg" alt="Escala de rajola i entrada de la casa" loading="lazy"></div></button>
       <button class="g2" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/montserrat-vinyes.jpg" alt="Vinyes amb Montserrat al fons" loading="lazy"></div></button>
       <button class="g3" data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/rotul.jpg" alt="Rètol de fusta de La Casa Vella sobre la porta" loading="lazy"></div></button>
-      <button class="g4" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llum.jpg" alt="Llum fet amb una ampolla de cava" loading="lazy"></div></button>
+      <button class="g4" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/llibre.jpg" alt="Llibre de La Casa Vella sobre una màquina de cosir antiga" loading="lazy"></div></button>
       <button class="g5" data-i="4" aria-label="Ampliar foto"><div class="photo"><img src="img/gerro.jpg" alt="Gerro amb flors seques al costat de la finestra" loading="lazy"></div></button>
       <button class="g6" data-i="5" aria-label="Ampliar foto"><div class="photo"><img src="img/mirall.jpg" alt="Mirall antic de marc daurat" loading="lazy"></div></button>
       <button class="g7" data-i="6" aria-label="Ampliar foto"><div class="photo"><img src="img/rebedor.jpg" alt="Rebedor amb terra de toves i porta al carrer" loading="lazy"></div></button>
-      <button class="g8" data-i="7" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-tovalloles.jpg" alt="Tovalloles sobre el llit de forja" loading="lazy"></div></button>
+      <button class="g8" data-i="7" aria-label="Ampliar foto"><div class="photo"><img src="img/rajola-flor.jpg" alt="Flor sobre el terra hidràulic" loading="lazy"></div></button>
     </div>
   </div>
 </section>
@@ -486,7 +486,7 @@ document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click'
 }));
 
 // Lightbox: each photo group opens its full set
-const ALL = ['rebedor', 'rotul', 'gerro', 'mirall', 'hab-balco', 'apt-sala-2', 'hab-llum', 'apt-cuina', 'hab-llit', 'apt-dormitori-3', 'hab-armari', 'apt-bany', 'hab-escriptori', 'apt-sala',
+const ALL = ['escala-entrada', 'rebedor', 'rotul', 'llibre', 'gerro', 'mirall', 'tirador', 'rajola', 'rajola-flor', 'hab-balco', 'apt-sala-2', 'hab-llum', 'apt-cuina', 'hab-llit', 'apt-dormitori-3', 'hab-armari', 'apt-bany', 'hab-escriptori', 'apt-sala',
   'apt-cuina-detall', 'hab-bany', 'apt-dormitori-2', 'apt-passadis', 'hab-tovalloles', 'apt-dormitori-4', 'apt-detall-rosa', 'apt-dormitori-1', 'apt-tovalloles', 'escala'];
 const SETS = { all: ALL.map(n => [n, 'La Casa Vella']) };
 SETS.gal = [...document.querySelectorAll('#gallery img')].map(i => [i.getAttribute('src').slice(4, -4), i.alt]);
@@ -498,7 +498,8 @@ function show(i) {
   lbCount.textContent = `${cur + 1} / ${set.length}`;
 }
 document.querySelectorAll('[data-set]').forEach(group => group.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-  set = SETS[group.dataset.set]; opener = b; show(+b.dataset.i); lb.hidden = false; document.getElementById('lbClose').focus();
+  set = SETS[group.dataset.set]; opener = b;
+  const n = b.querySelector('img').getAttribute('src').slice(4, -4), i = set.findIndex(x => x[0] === n); show(i < 0 ? 0 : i); lb.hidden = false; document.getElementById('lbClose').focus();
 })));
 document.getElementById('allPhotos').addEventListener('click', e => {
   set = SETS.all; opener = e.currentTarget; show(0); lb.hidden = false; document.getElementById('lbClose').focus();
