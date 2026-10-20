@@ -454,7 +454,7 @@ footer { padding-bottom: 96px; }
 
 <section class="section" style="padding-top:0">
   <div class="wrap split">
-    <div class="media" style="--collage: url(img/gerro.jpg)"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació amb bigues verdes, terra hidràulic i balcó" loading="lazy"></div></div>
+    <div class="media" style="--collage: url(img/gerro.jpg)"><div class="photo"><img src="img/hab-armari.jpg" alt="Habitació amb bigues verdes, armari antic i terra hidràulic" loading="lazy"></div></div>
     <div class="text">
       <span class="label">Restaurada amb respecte</span>
       <h2 data-script="restaurada amb cura">Pedra, fusta i el silenci del poble</h2>
@@ -510,10 +510,10 @@ footer { padding-bottom: 96px; }
         <button class="btn" id="allPhotos" type="button">Veure totes les fotos</button>
       </div>
       <div class="inside-photos" data-set="all">
-        <button class="a" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació amb llit de forja, terra hidràulic i balcó" loading="lazy"></div></button>
-        <button class="b" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-sala-2.jpg" alt="Sala amb cuina i passadís" loading="lazy"></div></button>
-        <button class="c" data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llum.jpg" alt="Llum fet amb una ampolla de cava" loading="lazy"></div></button>
-        <button class="d" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-cuina.jpg" alt="Cuina amb rajola hidràulica" loading="lazy"></div></button>
+        <button class="a" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/escala-entrada.jpg" alt="Escala de rajola i entrada de la casa" loading="lazy"></div></button>
+        <button class="b" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/rebedor.jpg" alt="Rebedor amb mirall daurat i porta al carrer" loading="lazy"></div></button>
+        <button class="c" data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/llibre.jpg" alt="Llibre de La Casa Vella sobre una màquina de cosir antiga" loading="lazy"></div></button>
+        <button class="d" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/rajola-flor.jpg" alt="Flor sobre el terra hidràulic" loading="lazy"></div></button>
       </div>
     </div>
   </div>
@@ -691,7 +691,7 @@ document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click'
 }));
 
 // Lightbox: each photo group opens its full set
-const ALL = ['restaurant-barra', 'escala-entrada', 'rebedor', 'rotul', 'llibre', 'gerro', 'mirall', 'tirador', 'rajola', 'rajola-flor', 'hab-balco', 'apt-sala-2', 'hab-llum', 'apt-cuina', 'hab-llit', 'apt-dormitori-3', 'hab-armari', 'apt-bany', 'hab-escriptori', 'apt-sala',
+const ALL = ['restaurant-barra', 'hab-armari', 'escala-entrada', 'rebedor', 'rotul', 'llibre', 'gerro', 'mirall', 'tirador', 'rajola', 'rajola-flor', 'hab-balco', 'apt-sala-2', 'hab-llum', 'apt-cuina', 'hab-llit', 'apt-dormitori-3', 'hab-armari', 'apt-bany', 'hab-escriptori', 'apt-sala',
   'apt-cuina-detall', 'hab-bany', 'apt-dormitori-2', 'apt-passadis', 'hab-tovalloles', 'apt-dormitori-4', 'apt-detall-rosa', 'apt-dormitori-1', 'apt-tovalloles', 'escala'];
 const SETS = { all: ALL.map(n => [n, 'La Casa Vella']) };
 SETS.gal = [...document.querySelectorAll('#gallery img')].map(i => [i.getAttribute('src').slice(4, -4), i.alt]);
