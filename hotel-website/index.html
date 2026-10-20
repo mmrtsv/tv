@@ -133,6 +133,24 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .apt-photos .more span { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15, 38, 20, .55); color: #f3efe4; font-size: 11.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 @media (max-width: 880px) { .apt, .apt.flip { grid-template-columns: 1fr; } .apt.flip .apt-photos { order: 0; } }
 
+/* Stays: four plaques, shared interiors */
+.stays { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.stays article { display: grid; gap: 14px; align-content: start; justify-items: start; }
+.stays img { width: 100%; height: auto; transition: transform .3s; }
+.stays article:hover img { transform: translateY(-4px); }
+.stays p { color: var(--muted); font-size: 15px; }
+.stays .btn { padding: 12px 18px; }
+@media (max-width: 900px) { .stays { grid-template-columns: 1fr 1fr; } }
+.inside { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(32px, 5vw, 80px); align-items: center; margin-top: clamp(64px, 9vw, 112px); }
+.inside .text { display: grid; gap: 20px; justify-items: start; }
+.inside h3 { font-size: clamp(30px, 3.6vw, 44px); }
+.inside-photos { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 220px 180px; gap: 10px; }
+.inside-photos button { padding: 0; border: 0; background: none; cursor: zoom-in; min-width: 0; }
+.inside-photos .photo { width: 100%; height: 100%; }
+.inside-photos .a { grid-row: span 2; }
+.inside-photos .d { display: none; }
+@media (max-width: 880px) { .inside { grid-template-columns: 1fr; } .inside-photos { grid-template-rows: 200px 160px; } }
+
 /* Name plaques */
 .plaques { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .plaques a { display: block; transition: transform .25s; }
@@ -218,7 +236,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 18px 32px; fl
 footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 </style>
 
-<div class="draft">Esborrany · Falten les fotos de Figarot i La Pineda, la capacitat de cada allotjament i les dades de contacte.</div>
+<div class="draft">Esborrany · Fotos encara sense separar per allotjament. Falten la capacitat de cada allotjament i les dades de contacte.</div>
 
 <header class="top">
   <div class="wrap">
@@ -281,74 +299,49 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 <section class="section" id="apartaments" style="padding-top:0">
   <div class="wrap">
     <div class="head-row">
-      <div><span class="label">Allotjaments</span><h2>Dormir a La Casa Vella</h2></div>
+      <div><span class="label">Allotjaments</span><h2>Dos apartaments i dues habitacions</h2></div>
       <a class="btn" href="#reservar">Consultar disponibilitat</a>
     </div>
-    <div class="plaques">
-      <a href="#montserrat"><img src="img/nom-montserrat.png" alt="Apartament Montserrat" loading="lazy"></a>
-      <a href="#la-pineda"><img src="img/nom-la-pineda.png" alt="Apartament La Pineda" loading="lazy"></a>
-      <a href="#les-vinyes"><img src="img/nom-les-vinyes.png" alt="Habitació Les Vinyes" loading="lazy"></a>
-      <a href="#figarot"><img src="img/nom-figarot.png" alt="Habitació Figarot" loading="lazy"></a>
+    <div class="stays">
+      <article>
+        <img src="img/nom-montserrat.png" alt="Apartament Montserrat" loading="lazy">
+        <p>La muntanya que es veu des del Bedorc, i el seu nom.</p>
+        <a class="btn solid" href="#reservar">Reservar</a>
+      </article>
+      <article>
+        <img src="img/nom-la-pineda.png" alt="Apartament La Pineda" loading="lazy">
+        <p>Amb el nom dels pins que envolten el poble.</p>
+        <a class="btn solid" href="#reservar">Reservar</a>
+      </article>
+      <article>
+        <img src="img/nom-les-vinyes.png" alt="Habitació Les Vinyes" loading="lazy">
+        <p>Per la tradició vitivinícola que ha modelat el paisatge.</p>
+        <a class="btn solid" href="#reservar">Reservar</a>
+      </article>
+      <article>
+        <img src="img/nom-figarot.png" alt="Habitació Figarot" loading="lazy">
+        <p>Amb el nom de la figuera, l'arbre de les cases de pagès.</p>
+        <a class="btn solid" href="#reservar">Reservar</a>
+      </article>
     </div>
-    <p class="plaques-note">Dos apartaments i dues habitacions, cadascun amb el nom d'un racó del paisatge: la muntanya, el pinar, les vinyes i la figuera.</p>
-    <div class="units">
-      <article class="apt" id="montserrat">
-        <div class="apt-photos" data-set="apt">
-          <button class="main" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-sala-2.jpg" alt="Sala de l'apartament amb bigues verdes, cuina i passadís"></div></button>
-          <button data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-dormitori-3.jpg" alt="Dormitori doble amb vista a la sala" loading="lazy"></div></button>
-          <button data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-cuina.jpg" alt="Cuina amb rajola hidràulica" loading="lazy"></div></button>
-          <button data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-bany.jpg" alt="Bany amb dutxa" loading="lazy"></div></button>
-          <button data-i="4" class="more" aria-label="Veure totes les fotos de l'apartament"><div class="photo"><img src="img/apt-cuina-detall.jpg" alt="" loading="lazy"></div><span>+ fotos</span></button>
-        </div>
-        <div class="apt-info">
-          <span class="label">Apartament</span>
-          <h3>Montserrat</h3>
-          <div class="meta"><span>1 dormitori</span><span>Cuina pròpia</span><span>Sortida a l'exterior</span></div>
-          <p>Un apartament lluminós sota les bigues de fusta pintades de verd. Té un dormitori doble, una sala amb sofà llit, cuina amb barra per esmorzar sobre rajola hidràulica i un bany amb dutxa. Al fons del passadís, una porta s'obre a les teulades del poble i a la muntanya.</p>
-          <ul class="amen">
-            <li>Llit doble i sofà llit</li>
-            <li>Cuina equipada amb placa, campana i nevera</li>
-            <li>Bany privat amb dutxa</li>
-            <li>Aire condicionat i televisió</li>
-            <li>Tovalloles i roba de llit incloses</li>
-          </ul>
-          <a class="btn solid" href="#reservar">Reservar Montserrat</a>
-        </div>
-      </article>
-
-      <article class="apt flip" id="les-vinyes">
-        <div class="apt-photos" data-set="hab">
-          <button class="main" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació doble amb llit de forja verd, terra hidràulic i balcó" loading="lazy"></div></button>
-          <button data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llit.jpg" alt="Llit de forja amb dues tauletes i llums d'ampolla" loading="lazy"></div></button>
-          <button data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-armari.jpg" alt="Armari antic de portes verdes i bany al fons" loading="lazy"></div></button>
-          <button data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-bany.jpg" alt="Bany amb marbre blanc i mirall rodó" loading="lazy"></div></button>
-          <button data-i="4" class="more" aria-label="Veure totes les fotos de l'habitació"><div class="photo"><img src="img/hab-llum.jpg" alt="" loading="lazy"></div><span>+ fotos</span></button>
-        </div>
-        <div class="apt-info">
-          <span class="label">Habitació</span>
-          <h3>Les Vinyes</h3>
-          <div class="meta"><span>2 persones</span><span>Bany privat</span><span>Balcó</span></div>
-          <p>Una habitació amb caràcter: llit de forja verd, terra hidràulic, un armari antic de portes de fusta i un balcó que dona al carrer del poble. A les tauletes, llums fets amb ampolles de cava.</p>
-          <ul class="amen">
-            <li>Llit doble de forja</li>
-            <li>Bany privat amb dutxa</li>
-            <li>Balcó, escriptori i televisió</li>
-            <li>Aire condicionat</li>
-            <li>Tovalloles i roba de llit incloses</li>
-          </ul>
-          <a class="btn solid" href="#reservar">Reservar Les Vinyes</a>
-        </div>
-      </article>
-
-      <div class="soon">
-        <article id="la-pineda">
-          <img src="img/nom-la-pineda.png" alt="" loading="lazy">
-          <div><span class="label">Apartament</span><h3>La Pineda</h3><p>Fotos i descripció properament.</p><a class="btn" href="#contacte">Demanar informació</a></div>
-        </article>
-        <article id="figarot">
-          <img src="img/nom-figarot.png" alt="" loading="lazy">
-          <div><span class="label">Habitació</span><h3>Figarot</h3><p>Fotos i descripció properament.</p><a class="btn" href="#contacte">Demanar informació</a></div>
-        </article>
+    <div class="inside">
+      <div class="text">
+        <span class="label">Com són per dins</span>
+        <h3>Bigues verdes, terra hidràulic i banys nous</h3>
+        <p>Cada allotjament conserva les bigues de fusta de la casa, pintades de verd, amb mobles antics i detalls fets a mà. Els apartaments tenen cuina pròpia; les habitacions, bany privat.</p>
+        <ul class="amen">
+          <li>Bany privat amb dutxa</li>
+          <li>Cuina equipada als apartaments</li>
+          <li>Aire condicionat i televisió</li>
+          <li>Tovalloles i roba de llit incloses</li>
+        </ul>
+        <button class="btn" id="allPhotos" type="button">Veure les 20 fotos</button>
+      </div>
+      <div class="inside-photos" data-set="all">
+        <button class="a" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació amb llit de forja, terra hidràulic i balcó" loading="lazy"></div></button>
+        <button class="b" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-sala-2.jpg" alt="Sala amb cuina i passadís" loading="lazy"></div></button>
+        <button class="c" data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llum.jpg" alt="Llum fet amb una ampolla de cava" loading="lazy"></div></button>
+        <button class="d" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-cuina.jpg" alt="Cuina amb rajola hidràulica" loading="lazy"></div></button>
       </div>
     </div>
   </div>
@@ -483,13 +476,9 @@ document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click'
 }));
 
 // Lightbox: each photo group opens its full set
-const SETS = {
-  apt: [['apt-sala-2', 'Sala amb cuina i passadís'], ['apt-dormitori-3', 'Dormitori doble'], ['apt-cuina', 'Cuina amb rajola hidràulica'], ['apt-bany', 'Bany amb dutxa'],
-        ['apt-cuina-detall', 'Detall de la cuina'], ['apt-sala', "Sala d'estar"], ['apt-dormitori-2', 'Dormitori doble'], ['apt-dormitori-4', 'Dormitori amb armari'],
-        ['apt-dormitori-1', 'Dormitori i porta corredissa'], ['apt-passadis', 'Passadís cap a la terrassa'], ['apt-detall-rosa', 'Detall del passadís'], ['apt-tovalloles', 'Tovalloles']],
-  hab: [['hab-balco', 'Habitació amb balcó'], ['hab-llit', 'Llit de forja'], ['hab-armari', 'Armari antic i bany'], ['hab-bany', 'Bany privat'], ['hab-llum', "Llum d'ampolla de cava"],
-        ['hab-escriptori', 'Escriptori, armari i bany'], ['hab-tovalloles', 'Tovalloles'], ['escala', "Replà de l'escala"]],
-};
+const ALL = ['hab-balco', 'apt-sala-2', 'hab-llum', 'apt-cuina', 'hab-llit', 'apt-dormitori-3', 'hab-armari', 'apt-bany', 'hab-escriptori', 'apt-sala',
+  'apt-cuina-detall', 'hab-bany', 'apt-dormitori-2', 'apt-passadis', 'hab-tovalloles', 'apt-dormitori-4', 'apt-detall-rosa', 'apt-dormitori-1', 'apt-tovalloles', 'escala'];
+const SETS = { all: ALL.map(n => [n, 'La Casa Vella']) };
 SETS.gal = [...document.querySelectorAll('#gallery img')].map(i => [i.getAttribute('src').slice(4, -4), i.alt]);
 const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), lbCount = document.getElementById('lbCount');
 let set = [], cur = 0, opener = null;
@@ -501,6 +490,9 @@ function show(i) {
 document.querySelectorAll('[data-set]').forEach(group => group.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
   set = SETS[group.dataset.set]; opener = b; show(+b.dataset.i); lb.hidden = false; document.getElementById('lbClose').focus();
 })));
+document.getElementById('allPhotos').addEventListener('click', e => {
+  set = SETS.all; opener = e.currentTarget; show(0); lb.hidden = false; document.getElementById('lbClose').focus();
+});
 document.getElementById('lbClose').onclick = () => { lb.hidden = true; opener && opener.focus(); };
 document.getElementById('lbPrev').onclick = () => show(cur - 1);
 document.getElementById('lbNext').onclick = () => show(cur + 1);
