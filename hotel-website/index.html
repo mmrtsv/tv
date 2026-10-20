@@ -133,9 +133,34 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .apt-photos .more span { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15, 38, 20, .55); color: #f3efe4; font-size: 11.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 @media (max-width: 880px) { .apt, .apt.flip { grid-template-columns: 1fr; } .apt.flip .apt-photos { order: 0; } }
 
+/* Name plaques */
+.plaques { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.plaques a { display: block; transition: transform .25s; }
+.plaques a:hover { transform: translateY(-4px); }
+.plaques img { width: 100%; height: auto; }
+.plaques-note { color: var(--muted); max-width: 60ch; margin-top: 22px; margin-bottom: clamp(48px, 7vw, 88px); }
+@media (max-width: 760px) { .plaques { grid-template-columns: 1fr 1fr; } }
+.soon { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.soon article { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; align-items: center; padding: 20px; border: 1px solid var(--line); background: var(--paper); }
+.soon img { width: 100%; height: auto; }
+.soon article > div { display: grid; gap: 10px; justify-items: start; }
+.soon h3 { font-size: 30px; }
+.soon p { color: var(--muted); }
+@media (max-width: 880px) { .soon { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .soon article { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding: 14px; } }
+
+/* History timeline */
+.timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); width: 100%; }
+.timeline li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 18px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.timeline .year { font-family: var(--display); font-size: 22px; color: var(--basil); font-variant-numeric: tabular-nums; line-height: 1.3; }
+.timeline h3 { font-family: var(--body); font-weight: 600; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+.timeline p { color: var(--muted); font-size: 16px; }
+.seal-head { display: grid; gap: 8px; margin-top: clamp(56px, 8vw, 96px); }
+.seal-head h3 { font-size: clamp(26px, 3vw, 34px); }
+
 /* Brand symbols = the house's story */
 .history { background: var(--paper); border-block: 1px solid var(--line); }
-.symbols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); margin-top: 52px; }
+.symbols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); margin-top: 24px; }
 .symbols article { padding: 26px 22px 6px 0; display: grid; gap: 8px; align-content: start; }
 .symbols article + article { padding-left: 22px; border-left: 1px solid var(--line); }
 .symbols h3 { font-size: 24px; }
@@ -193,7 +218,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 18px 32px; fl
 footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 </style>
 
-<div class="draft">Esborrany · Falten la història de la família, els noms dels allotjaments, la capacitat i les dades de contacte.</div>
+<div class="draft">Esborrany · Falten les fotos de Figarot i La Pineda, la capacitat de cada allotjament i les dades de contacte.</div>
 
 <header class="top">
   <div class="wrap">
@@ -237,7 +262,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 <section class="section intro" id="casa">
   <div class="wrap inner">
     <span class="label">La casa</span>
-    <p class="lede">Una casa de poble de 1898 al cor del Bedorc, entre vinyes, oliveres i feixes de pedra, amb Montserrat a l'horitzó. L'hem restaurada per viure-la a poc a poc: bigues de fusta a la vista, parets blanques i finestres que donen a la muntanya.</p>
+    <p class="lede">Una casa de poble construïda entre 1898 i 1900 al cor del Bedorc, entre vinyes, oliveres i feixes de pedra, amb Montserrat a l'horitzó. L'hem restaurada per viure-la a poc a poc: bigues de fusta a la vista, parets blanques i finestres que donen a la muntanya.</p>
   </div>
 </section>
 
@@ -248,7 +273,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
       <span class="label">Restaurada amb respecte</span>
       <h2>Bigues de fusta, llum natural i el silenci del poble</h2>
       <p>Hem conservat les bigues de fusta, el terra hidràulic i els armaris antics, tot pintat del verd fosc que ara també és el nostre color. Hi hem afegit només el que fa falta per estar-hi bé: banys nous, aire condicionat i llits còmodes.</p>
-      <a class="btn" href="#apartaments">Veure els apartaments</a>
+      <a class="btn" href="#apartaments">Veure els allotjaments</a>
     </div>
   </div>
 </section>
@@ -259,8 +284,15 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
       <div><span class="label">Allotjaments</span><h2>Dormir a La Casa Vella</h2></div>
       <a class="btn" href="#reservar">Consultar disponibilitat</a>
     </div>
+    <div class="plaques">
+      <a href="#montserrat"><img src="img/nom-montserrat.png" alt="Apartament Montserrat" loading="lazy"></a>
+      <a href="#la-pineda"><img src="img/nom-la-pineda.png" alt="Apartament La Pineda" loading="lazy"></a>
+      <a href="#les-vinyes"><img src="img/nom-les-vinyes.png" alt="Habitació Les Vinyes" loading="lazy"></a>
+      <a href="#figarot"><img src="img/nom-figarot.png" alt="Habitació Figarot" loading="lazy"></a>
+    </div>
+    <p class="plaques-note">Dos apartaments i dues habitacions, cadascun amb el nom d'un racó del paisatge: la muntanya, el pinar, les vinyes i la figuera.</p>
     <div class="units">
-      <article class="apt">
+      <article class="apt" id="montserrat">
         <div class="apt-photos" data-set="apt">
           <button class="main" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-sala-2.jpg" alt="Sala de l'apartament amb bigues verdes, cuina i passadís"></div></button>
           <button data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-dormitori-3.jpg" alt="Dormitori doble amb vista a la sala" loading="lazy"></div></button>
@@ -270,7 +302,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
         </div>
         <div class="apt-info">
           <span class="label">Apartament</span>
-          <h3>L'Apartament</h3>
+          <h3>Montserrat</h3>
           <div class="meta"><span>1 dormitori</span><span>Cuina pròpia</span><span>Sortida a l'exterior</span></div>
           <p>Un apartament lluminós sota les bigues de fusta pintades de verd. Té un dormitori doble, una sala amb sofà llit, cuina amb barra per esmorzar sobre rajola hidràulica i un bany amb dutxa. Al fons del passadís, una porta s'obre a les teulades del poble i a la muntanya.</p>
           <ul class="amen">
@@ -280,11 +312,11 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
             <li>Aire condicionat i televisió</li>
             <li>Tovalloles i roba de llit incloses</li>
           </ul>
-          <a class="btn solid" href="#reservar">Reservar l'apartament</a>
+          <a class="btn solid" href="#reservar">Reservar Montserrat</a>
         </div>
       </article>
 
-      <article class="apt flip">
+      <article class="apt flip" id="les-vinyes">
         <div class="apt-photos" data-set="hab">
           <button class="main" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació doble amb llit de forja verd, terra hidràulic i balcó" loading="lazy"></div></button>
           <button data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llit.jpg" alt="Llit de forja amb dues tauletes i llums d'ampolla" loading="lazy"></div></button>
@@ -294,7 +326,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
         </div>
         <div class="apt-info">
           <span class="label">Habitació</span>
-          <h3>L'Habitació</h3>
+          <h3>Les Vinyes</h3>
           <div class="meta"><span>2 persones</span><span>Bany privat</span><span>Balcó</span></div>
           <p>Una habitació amb caràcter: llit de forja verd, terra hidràulic, un armari antic de portes de fusta i un balcó que dona al carrer del poble. A les tauletes, llums fets amb ampolles de cava.</p>
           <ul class="amen">
@@ -304,9 +336,20 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
             <li>Aire condicionat</li>
             <li>Tovalloles i roba de llit incloses</li>
           </ul>
-          <a class="btn solid" href="#reservar">Reservar l'habitació</a>
+          <a class="btn solid" href="#reservar">Reservar Les Vinyes</a>
         </div>
       </article>
+
+      <div class="soon">
+        <article id="la-pineda">
+          <img src="img/nom-la-pineda.png" alt="" loading="lazy">
+          <div><span class="label">Apartament</span><h3>La Pineda</h3><p>Fotos i descripció properament.</p><a class="btn" href="#contacte">Demanar informació</a></div>
+        </article>
+        <article id="figarot">
+          <img src="img/nom-figarot.png" alt="" loading="lazy">
+          <div><span class="label">Habitació</span><h3>Figarot</h3><p>Fotos i descripció properament.</p><a class="btn" href="#contacte">Demanar informació</a></div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -314,13 +357,20 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 <section class="section history" id="historia">
   <div class="wrap">
     <div class="split flip">
-      <div class="media"><div class="photo"><img src="img/hab-armari.jpg" alt="Armari antic de portes de fusta pintades de verd" loading="lazy"></div></div>
+      <div class="media"><div class="photo"><img src="img/historia-carrer.jpg" alt="Carrer del Bedorc, foto antiga que es fon amb la foto actual" loading="lazy"></div></div>
       <div class="text">
-        <span class="label">Història · 1898</span>
-        <h2>Una casa que recorda el nom de les coses</h2>
-        <p>La Casa Vella es va construir el 1898 al Bedorc, un racó on la vida sempre ha anat lligada a la terra: la vinya, l'oliva, les collites i els animals. El nostre segell recull aquesta memòria en cinc elements, cadascun amb el seu significat.</p>
+        <span class="label">Història · Casa Parellada</span>
+        <h2>Una casa de pagès que torna a tenir vida</h2>
+        <ol class="timeline">
+          <li><span class="year">1898</span><div><h3>La construcció</h3><p>La casa es va construir entre els anys 1898 i 1900.</p></div></li>
+          <li><span class="year">S. XX</span><div><h3>Anys de pagesia</h3><p>Durant molts anys els propietaris van viure de la pagesia.</p></div></li>
+          <li><span class="year">&nbsp;</span><div><h3>L'ampliació</h3><p>S'hi van afegir una cort, un galliner i una petita quadra pel «Macho», el cavall que treballava la terra i transportava les collites.</p></div></li>
+          <li><span class="year">&nbsp;</span><div><h3>La casa buida</h3><p>La família es va anar fent gran i, sense descendència, la casa va quedar buida.</p></div></li>
+          <li><span class="year">Avui</span><div><h3>La Casa Vella</h3><p>Ara forma part del projecte de la nostra família.</p></div></li>
+        </ol>
       </div>
     </div>
+    <div class="seal-head"><span class="label">El nostre segell</span><h3>Cinc elements del Bedorc</h3></div>
     <div class="symbols">
       <article><span class="label">I</span><h3>Fulla de parra</h3><p>La tradició vitivinícola que ha modelat el paisatge i la vida de la casa durant segles.</p></article>
       <article><span class="label">II</span><h3>Raïm</h3><p>L'abundància de les collites i la història agrícola de la terra fèrtil del Bedorc.</p></article>
