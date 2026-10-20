@@ -822,7 +822,7 @@ footer { padding-bottom: 32px !important; }
 <script>
 // Design proposals and hero photo: #opcio-2 or #opcio-2-foto-3 link straight to a combination
 (() => {
-  const HEROES = { 1: ['hero-vinyes-cel', 'center 62%'], 2: ['hero-vinyes-capvespre', 'center 40%'], 3: ['hero-vinyes-sol', 'center 40%'], 4: ['montserrat-vinyes', 'center 55%'], 5: ['bedorc-capvespre', '18% center'] };
+  const HEROES = { 1: ['hero-vinyes-cel', 'center 62%', 'Vinyes i Montserrat, cel blau'], 2: ['hero-vinyes-capvespre', 'center 40%', 'Vinyes al capvespre amb Montserrat'], 3: ['hero-vinyes-sol', 'center 40%', 'Vinyes amb llum de tarda'], 4: ['montserrat-vinyes', 'center 55%', 'Vinyes i pinedes'], 5: ['bedorc-capvespre', '18% center', 'El Bedorc al capvespre'] };
   const vBtns = [...document.querySelectorAll('.variants button[data-v]')], hBtns = [...document.querySelectorAll('.variants button[data-h]')];
   const hero = document.getElementById('heroImg');
   let v = '1', h = '1';
@@ -832,7 +832,7 @@ footer { padding-bottom: 32px !important; }
     vBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
     hBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.h === h));
     hero.src = 'img/' + HEROES[h][0] + '.jpg'; hero.style.objectPosition = HEROES[h][1];
-    hero.alt = hBtns[h - 1].title;
+    hero.alt = HEROES[h][2];
   }
   // Design 5 rotates the cover between photos A, E and B
   const SLIDES = ['1', '5', '2'];
@@ -852,6 +852,7 @@ footer { padding-bottom: 32px !important; }
   // Phone preview: the same page in a 390px frame
   if (window.name === 'lcv-mobile') document.documentElement.classList.add('embedded');
   const pv = document.getElementById('phoneView'), pf = document.getElementById('phoneFrame');
+  if (pv) {
   document.getElementById('mobileBtn').addEventListener('click', () => {
     pf.src = location.href.split('#')[0] + '#opcio-' + v + '-foto-' + h;
     pv.hidden = false; document.getElementById('phoneClose').focus();
@@ -864,6 +865,7 @@ footer { padding-bottom: 32px !important; }
       if (pv.hidden) document.getElementById('mobileBtn').click(); else document.getElementById('phoneClose').click();
     }
   });
+  }
   hBtns.forEach(b => b.addEventListener('click', () => { h = b.dataset.h; apply(); save(); slideshow(); }));
   const m = location.hash.match(/^#opcio-([1-5])(?:-foto-([1-5]))?$/);
   if (m) { v = m[1]; h = m[2] || h; }
@@ -877,7 +879,10 @@ const menuBtn = document.getElementById('menuBtn'), nav = document.getElementByI
 menuBtn.addEventListener('click', () => { const o = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
 nav.addEventListener('click', e => { if (e.target.tagName === 'A') { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
 
-// Booking: default dates and a nights summary (no booking engine yet)
+// Lodgify: paste the booking page link from Lodgify (Website → Booking page, or the "Book now" link).
+// While it is empty, the form only shows a summary of the stay.
+const LODGIFY_URL = '';
+// Booking: default dates, then hand the search over to Lodgify
 const fin = document.getElementById('in'), fout = document.getElementById('out'), note = document.getElementById('bookNote');
 const iso = d => d.toISOString().slice(0, 10);
 const t = new Date(); t.setDate(t.getDate() + 14); fin.value = iso(t); t.setDate(t.getDate() + 2); fout.value = iso(t);
@@ -886,7 +891,17 @@ document.getElementById('bookForm').addEventListener('submit', e => {
   e.preventDefault();
   const n = Math.round((new Date(fout.value) - new Date(fin.value)) / 864e5);
   if (!(n > 0)) { note.textContent = "La data de sortida ha de ser posterior a la d'arribada."; return; }
-  note.textContent = `${n} ${n === 1 ? 'nit' : 'nits'}, ${document.getElementById('guests').value}. Aquí es connectarà el motor de reserves.`;
+  const g = document.getElementById('guests').value;
+  const adults = parseInt(g, 10) || 2, kids = parseInt((g.split('+')[1] || '0'), 10) || 0;
+  if (LODGIFY_URL) {
+    const u = new URL(LODGIFY_URL);
+    u.searchParams.set('arrival', fin.value); u.searchParams.set('departure', fout.value);
+    u.searchParams.set('adults', adults); if (kids) u.searchParams.set('children', kids);
+    note.textContent = 'Obrint la reserva…';
+    location.assign(u.toString());
+    return;
+  }
+  note.textContent = `${n} ${n === 1 ? 'nit' : 'nits'}, ${g}. La reserva en línia s'activarà aviat; mentrestant, truca'ns o escriu-nos per WhatsApp al +34 667 40 98 59.`;
 });
 
 document.getElementById('contactForm').addEventListener('submit', e => {
