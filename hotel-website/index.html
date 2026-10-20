@@ -76,7 +76,7 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 
 /* Hero: the brand guide's own composition, logo over the toned El Bedorc photo */
 .hero { position: relative; background: var(--deep); display: grid; place-items: center; text-align: center; min-height: min(84vh, 820px); overflow: hidden; }
-.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15, 38, 20, .15), rgba(15, 38, 20, .55)); }
 .hero .copy { position: relative; z-index: 2; display: grid; justify-items: center; gap: 26px; padding-block: 64px 120px; }
 .hero .mark { width: min(300px, 62vw); }
@@ -258,7 +258,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 </header>
 
 <section class="hero" id="inici" aria-label="Portada">
-  <img src="img/bedorc.jpg" alt="El Bedorc, el poble i les feixes de conreu amb la muntanya al fons">
+  <img src="img/montserrat-vinyes.jpg" alt="Vinyes i pinedes amb la muntanya de Montserrat al fons">
   <div class="copy wrap">
     <img class="mark" src="img/logo-light.png" alt="La Casa Vella, 1898, El Bedorc">
     <p>Allotjament rural · Des de 1898</p>
@@ -387,7 +387,7 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
     <div class="head-row"><div><span class="label">Galeria</span><h2>La casa en imatges</h2></div></div>
     <div class="gallery" id="gallery" data-set="gal">
       <button class="g1" data-i="0" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llit.jpg" alt="Habitació amb llit de forja" loading="lazy"></div></button>
-      <button class="g2" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/bedorc.jpg" alt="Vista del Bedorc" loading="lazy"></div></button>
+      <button class="g2" data-i="1" aria-label="Ampliar foto"><div class="photo"><img src="img/montserrat-vinyes.jpg" alt="Vinyes amb Montserrat al fons" loading="lazy"></div></button>
       <button class="g3" data-i="2" aria-label="Ampliar foto"><div class="photo"><img src="img/apt-cuina-detall.jpg" alt="Cuina amb la glaçonera de La Casa Vella" loading="lazy"></div></button>
       <button class="g4" data-i="3" aria-label="Ampliar foto"><div class="photo"><img src="img/hab-llum.jpg" alt="Llum fet amb una ampolla de cava" loading="lazy"></div></button>
       <button class="g5" data-i="4" aria-label="Ampliar foto"><div class="photo"><img src="img/escala.jpg" alt="Replà de l'escala" loading="lazy"></div></button>
