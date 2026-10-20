@@ -333,6 +333,10 @@ footer { padding-bottom: 104px !important; }
 :root.embedded .variants, :root.embedded .rail { display: none !important; }
 :root.embedded footer { padding-bottom: 32px !important; }
 @media (max-width: 640px) { .variants button.mob { display: none; } }
+/* Final choice made: only the phone preview stays in the bottom bar */
+.variants > span, .variants button[data-v], .variants button[data-h] { display: none !important; }
+.variants { padding: 4px; left: auto; right: max(16px, env(safe-area-inset-right, 0px)); transform: none; }
+@media (max-width: 640px) { .variants { display: none; } }
 /* 1 · Finca (Mas Grimosach): stone-beige, logo over the landscape, overlapping photo collages */
 :root[data-variant="1"] { --ground: #efebe3; --paper: #f7f5f0; --cava: #C6BFAF; --line: #d6d0c2; --muted: #5f6a5f; color-scheme: light; }
 :root[data-variant="1"] .hero { min-height: min(100vh, 980px); }
@@ -452,6 +456,18 @@ footer { padding-bottom: 104px !important; }
 :root[data-variant="5"] .quote, :root[data-variant="5"] .contact { background: #1A3F20; }
 :root[data-variant="5"] .quote .iso { background: #79A57A; }
 :root[data-variant="5"] .quote cite, :root[data-variant="5"] .contact .label { color: #C6BFAF; }
+/* Mobile booking: a compact solid card under the hero, same in every proposal */
+@media (max-width: 760px) {
+  :root[data-variant] .booking { margin-top: 0 !important; padding-top: 16px; }
+  :root[data-variant] .booking form { background: var(--paper) !important; border: 1px solid var(--line) !important; backdrop-filter: none; box-shadow: 0 10px 30px rgba(15, 38, 20, .08); grid-template-columns: 1fr 1fr; }
+  :root[data-variant] .booking .field { padding: 10px 14px; gap: 2px; border-color: var(--line) !important; }
+  :root[data-variant] .booking label { font-size: 10px; letter-spacing: .16em; color: var(--muted) !important; }
+  :root[data-variant] .booking input, :root[data-variant] .booking select { font-size: 15px; color: var(--text) !important; color-scheme: light; }
+  :root[data-variant] .booking .btn { margin: 0; padding: 15px; background: var(--deep) !important; border-color: var(--deep) !important; color: #f3efe4 !important; }
+  :root[data-variant="4"] .booking .btn { background: var(--ink) !important; border-color: var(--ink) !important; }
+  :root[data-variant] .hero .copy { padding-block-end: 56px !important; }
+  .hero p:not(.hero-claim) { letter-spacing: .18em; font-size: 11.5px; }
+}
 </style>
 
 
@@ -845,7 +861,8 @@ footer { padding-bottom: 104px !important; }
   const m = location.hash.match(/^#opcio-([1-5])(?:-foto-([1-5]))?$/);
   if (m) { v = m[1]; h = m[2] || h; }
   else { try { v = localStorage.getItem('lcv-variant') || v; h = localStorage.getItem('lcv-hero') || h; } catch (e) {} }
-  if (!/^[1-5]$/.test(v)) v = '1'; if (!/^[1-5]$/.test(h)) h = '1';
+  // Final design: proposal 5 (Masia) with the A/E/B cover rotation
+  v = '5'; if (!['1', '5', '2'].includes(h)) h = '1';
   apply();
   slideshow();
 })();
