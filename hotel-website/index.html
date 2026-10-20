@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap">
 <style>
 @font-face { font-family: "Le Monde Livre"; src: url(fonts/LeMondeLivreClassic-Normal.otf) format("opentype"); font-weight: 400 600; font-style: normal; font-display: swap; }
 @font-face { font-family: "Halyard Display"; src: url(fonts/HalyardDisplay.ttf) format("truetype"); font-weight: 300 700; font-style: normal; font-display: swap; }
@@ -254,6 +254,11 @@ footer .wrap > div { display: flex; gap: 22px; flex-wrap: wrap; }
 .variants button { border: 0; background: transparent; color: inherit; font: 500 13px var(--body); padding: 9px 14px; border-radius: 999px; cursor: pointer; white-space: nowrap; }
 .variants button[aria-pressed="true"] { background: #f3efe4; color: #1a3f20; }
 .variants button em { font-style: normal; opacity: .7; margin-left: 4px; }
+.variants .sep { border-left: 1px solid rgba(243, 239, 228, .25); margin-left: 4px; }
+.variants button.ph { width: 34px; height: 34px; padding: 0; background: var(--t) center / cover; flex: none; box-shadow: inset 0 0 0 2px transparent; position: relative; }
+.variants button.ph b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; color: #f3efe4; background: rgba(15, 38, 20, .35); border-radius: 999px; }
+.variants button.ph[aria-pressed="true"] { background: var(--t) center / cover; box-shadow: 0 0 0 2px #f3efe4; }
+.variants button.ph[aria-pressed="true"] b { background: transparent; }
 @media (max-width: 640px) { .variants span { display: none; } .variants button { padding: 9px 11px; } .variants button em { display: none; } }
 footer { padding-bottom: 96px; }
 /* shared: header laid over the hero photo */
@@ -279,7 +284,7 @@ footer { padding-bottom: 96px; }
 :root[data-variant="3"] .hero-claim { text-transform: none; }
 :root[data-variant="5"] .hero-claim { text-transform: none; font-style: italic; }
 /* 1 · Finca (Mas Grimosach): stone-beige, logo over the landscape, overlapping photo collages */
-:root[data-variant="1"] { --ground: #f2efeb; --paper: #f8f6f2; --cava: #ddd5c8; --line: #dcd5ca; --muted: #6e6a62; color-scheme: light; }
+:root[data-variant="1"] { --ground: #efebe3; --paper: #f7f5f0; --cava: #C6BFAF; --line: #d6d0c2; --muted: #5f6a5f; color-scheme: light; }
 :root[data-variant="1"] .hero { min-height: min(100vh, 980px); }
 :root[data-variant="1"] .hero::after { background: linear-gradient(180deg, rgba(15, 25, 15, .35), rgba(15, 25, 15, .2) 40%, rgba(15, 25, 15, .45)); }
 :root[data-variant="1"] .hero .mark { width: min(360px, 66vw); }
@@ -290,41 +295,41 @@ footer { padding-bottom: 96px; }
 :root[data-variant="1"] .split .media::before { content: ""; position: absolute; left: 0; bottom: 0; width: 48%; aspect-ratio: 4 / 3; background: var(--collage, var(--cava)) center / cover; z-index: 1; box-shadow: 0 0 0 10px var(--ground); }
 :root[data-variant="1"] .split.flip .media::before { left: auto; right: 0; }
 
-/* 2 · Celler (Oller del Mas): charcoal bands, spaced capitals, booking inside the hero */
-:root[data-variant="2"] { --ground: #ffffff; --paper: #f6f4f0; --cava: #e9e4da; --ink: #1f1f1f; --text: #3a3a3a; --muted: #77746e; --line: #e4e0d8; --basil: #9c7a45; --sage: #c9a46a; --deep: #262626; color-scheme: light; }
-:root[data-variant="2"] header.top { background: #262626; border-color: transparent; }
-:root[data-variant="2"] body::before { background: #262626; }
+/* 2 · Celler (Oller del Mas): deep-green bands, spaced capitals, booking inside the hero */
+:root[data-variant="2"] { --ground: #ffffff; --paper: #f7f5f0; --cava: #C6BFAF; --ink: #1A3F20; --text: #26302a; --muted: #5f6a5f; --line: #e3dfd5; --basil: #2E6D2E; --sage: #79A57A; --deep: #1A3F20; color-scheme: light; }
+:root[data-variant="2"] header.top { background: #1A3F20; border-color: transparent; }
+:root[data-variant="2"] body::before { background: #1A3F20; }
 :root[data-variant="2"] .top .logo, :root[data-variant="2"] .top .menu-btn { color: #f3efe4; }
 :root[data-variant="2"] .top .logo .iso { background: #f3efe4; }
 :root[data-variant="2"] .top nav a, :root[data-variant="2"] .top .lang { color: rgba(243, 239, 228, .75); }
-:root[data-variant="2"] .top nav.open { background: #262626; }
+:root[data-variant="2"] .top nav.open { background: #1A3F20; }
 :root[data-variant="2"] .hero { min-height: min(92vh, 900px); }
 :root[data-variant="2"] .hero .copy { padding-block: 40px 230px; gap: 22px; }
 :root[data-variant="2"] .hero .mark { width: 92px; content: url(img/iso-light.png); }
 :root[data-variant="2"] .hero-claim { display: block; color: #f3efe4; font-family: var(--display); font-size: clamp(30px, 4.6vw, 64px); text-transform: uppercase; letter-spacing: .04em; line-height: 1.1; max-width: 18ch; }
 :root[data-variant="2"] .hero p:not(.hero-claim) { display: none; }
 :root[data-variant="2"] .booking { margin-top: -180px; max-width: 980px; }
-:root[data-variant="2"] .booking form { background: rgba(20, 20, 20, .55); border-color: rgba(255, 255, 255, .35); backdrop-filter: blur(4px); }
+:root[data-variant="2"] .booking form { background: rgba(15, 38, 20, .6); border-color: rgba(255, 255, 255, .35); backdrop-filter: blur(4px); }
 :root[data-variant="2"] .booking .field { border-color: rgba(255, 255, 255, .25); }
 :root[data-variant="2"] .booking label { color: rgba(243, 239, 228, .75); }
 :root[data-variant="2"] .booking input, :root[data-variant="2"] .booking select { color: #f3efe4; color-scheme: dark; }
-:root[data-variant="2"] .booking .btn.solid { background: #f3efe4; color: #1f1f1f; border-color: #f3efe4; }
+:root[data-variant="2"] .booking .btn.solid { background: #f3efe4; color: #1A3F20; border-color: #f3efe4; }
 :root[data-variant="2"] .booking .note { color: var(--muted); }
 :root[data-variant="2"] .btn { letter-spacing: .45em; font-weight: 400; }
-:root[data-variant="2"] .btn.solid { background: #262626; border-color: #262626; color: #f3efe4; }
+:root[data-variant="2"] .btn.solid { background: #1A3F20; border-color: #1A3F20; color: #f3efe4; }
 :root[data-variant="2"] h2 { text-transform: uppercase; letter-spacing: .03em; font-size: clamp(30px, 3.8vw, 52px) !important; }
-:root[data-variant="2"] .history { --ink: #f3efe4; --text: #dcd8cf; --muted: #a8a49b; --line: #3c3c3c; --paper: #262626; --basil: #c9a46a; background: #262626; border-color: transparent; }
-:root[data-variant="2"] .quote, :root[data-variant="2"] .contact { background: #1e1e1e; }
-:root[data-variant="2"] .quote .iso { background: #c9a46a; }
-:root[data-variant="2"] .quote cite, :root[data-variant="2"] .contact .label { color: #c9a46a; }
+:root[data-variant="2"] .history { --ink: #f3efe4; --text: #e3ddd0; --muted: #a9b8a6; --line: #2e5435; --paper: #1A3F20; --basil: #C6BFAF; background: #1A3F20; border-color: transparent; }
+:root[data-variant="2"] .quote, :root[data-variant="2"] .contact { background: #143219; }
+:root[data-variant="2"] .quote .iso { background: #C6BFAF; }
+:root[data-variant="2"] .quote cite, :root[data-variant="2"] .contact .label { color: #C6BFAF; }
 
-/* 3 · Santuari (Son Brull): greige and brown, large light headings, side booking rail */
-:root[data-variant="3"] { --ground: #ebe6df; --paper: #e3ddd4; --cava: #d6cdc0; --ink: #3b3530; --text: #4a433d; --muted: #847b72; --line: #d3cbbf; --basil: #8a6f55; --sage: #a68b6d; --deep: #4a3f37; color-scheme: light; }
+/* 3 · Santuari (Son Brull): cava tones, large light headings, side booking rail */
+:root[data-variant="3"] { --ground: #e9e5dc; --paper: #ddd7ca; --cava: #C6BFAF; --ink: #1A3F20; --text: #26302a; --muted: #5f6a5f; --line: #cfc8b9; --basil: #2E6D2E; --sage: #79A57A; --deep: #1A3F20; color-scheme: light; }
 :root[data-variant="3"] header.top { background: var(--ground); }
 :root[data-variant="3"] body::before { background: var(--ground); }
-:root[data-variant="3"] .hero::after { background: rgba(40, 32, 26, .32); }
+:root[data-variant="3"] .hero::after { background: rgba(15, 38, 20, .3); }
 :root[data-variant="3"] .hero .mark { display: none; }
-:root[data-variant="3"] .hero-claim { display: block; color: #f6f1e9; font-family: var(--display); font-size: clamp(36px, 5.4vw, 76px); line-height: 1.05; max-width: 16ch; }
+:root[data-variant="3"] .hero-claim { display: block; color: #f3efe4; font-family: var(--display); font-size: clamp(36px, 5.4vw, 76px); line-height: 1.05; max-width: 16ch; }
 :root[data-variant="3"] .hero p:not(.hero-claim) { font-style: italic; text-transform: none; letter-spacing: .02em; font-size: 20px; font-family: var(--display); }
 :root[data-variant="3"] h2 { font-size: clamp(38px, 5vw, 70px) !important; line-height: 1.05; }
 :root[data-variant="3"] .head-row { justify-content: center; text-align: center; }
@@ -338,7 +343,7 @@ footer { padding-bottom: 96px; }
 @media (max-width: 760px) { :root[data-variant="3"] .rail { display: none; } }
 
 /* 4 · Respira (Es Racó d'Artà + Off Grid): one word over a full-screen photo, white and quiet */
-:root[data-variant="4"] { --ground: #ffffff; --paper: #f7f6f3; --cava: #ece9e3; --ink: #262626; --text: #555551; --muted: #96938c; --line: #ebe8e2; --basil: #6d6a63; --sage: #9a968e; --deep: #f1efea; color-scheme: light; }
+:root[data-variant="4"] { --ground: #ffffff; --paper: #f7f5f0; --cava: #C6BFAF; --ink: #1A3F20; --text: #3c463e; --muted: #79A57A; --line: #e6e2d8; --basil: #2E6D2E; --sage: #79A57A; --deep: #f7f5f0; color-scheme: light; }
 :root[data-variant="4"] .top .wrap { display: flex; justify-content: space-between; }
 :root[data-variant="4"] .top nav { display: none; }
 :root[data-variant="4"] .top nav.open { display: flex; flex-direction: column; gap: 14px; position: absolute; top: 100%; left: 0; right: 0; padding: 20px max(16px, env(safe-area-inset-left, 0px)) 24px; }
@@ -348,11 +353,11 @@ footer { padding-bottom: 96px; }
 :root[data-variant="4"] .top .lang { display: none; }
 :root[data-variant="4"] .top .right .btn { border-radius: 999px; background: transparent; border-color: rgba(243, 239, 228, .8); color: #f3efe4; }
 :root[data-variant="4"] .hero { min-height: 100vh; }
-:root[data-variant="4"] .hero::after { background: rgba(20, 20, 20, .12); }
+:root[data-variant="4"] .hero::after { background: rgba(15, 38, 20, .12); }
 :root[data-variant="4"] .hero .mark, :root[data-variant="4"] .hero p { display: none; }
 :root[data-variant="4"] .hero-word { display: grid; justify-items: center; gap: 18px; }
-:root[data-variant="4"] .hero-word span { color: #fff; font-family: var(--body); font-weight: 300; font-size: clamp(48px, 8vw, 104px); letter-spacing: .02em; text-transform: uppercase; line-height: 1; }
-:root[data-variant="4"] .hero-word .btn { color: #fff; border-color: rgba(255, 255, 255, .8); letter-spacing: .08em; text-transform: none; font-weight: 400; font-size: 13px; padding: 10px 16px; }
+:root[data-variant="4"] .hero-word span { color: #f7f5f0; font-family: var(--body); font-weight: 300; font-size: clamp(48px, 8vw, 104px); letter-spacing: .02em; text-transform: uppercase; line-height: 1; }
+:root[data-variant="4"] .hero-word .btn { color: #f7f5f0; border-color: rgba(255, 255, 255, .8); letter-spacing: .08em; text-transform: none; font-weight: 400; font-size: 13px; padding: 10px 16px; }
 :root[data-variant="4"] .booking { margin-top: 0; padding-top: 32px; }
 :root[data-variant="4"] .booking form { border-color: var(--line); }
 :root[data-variant="4"] h2 { font-family: var(--body) !important; font-weight: 300; font-size: clamp(24px, 2.6vw, 32px) !important; letter-spacing: .02em; }
@@ -364,39 +369,39 @@ footer { padding-bottom: 96px; }
 :root[data-variant="4"] .quote { background: var(--ground); color: var(--text); }
 :root[data-variant="4"] .quote blockquote { color: var(--text); font-size: clamp(20px, 2.2vw, 26px); }
 :root[data-variant="4"] .quote .iso { background: var(--muted); }
-:root[data-variant="4"] .btn.solid { background: var(--ink); border-color: var(--ink); color: #fff; border-radius: 999px; }
+:root[data-variant="4"] .btn.solid { background: var(--ink); border-color: var(--ink); color: #f7f5f0; border-radius: 999px; }
 :root[data-variant="4"] .btn { border-radius: 999px; }
 
-/* 5 · Masia (La Vella Farga + Mas d'en Bruno): dark hero, capitals crossed by a handwritten word, wine accent */
-:root[data-variant="5"] { --ground: #f6f6f4; --paper: #ffffff; --cava: #e8e2d8; --ink: #2a2320; --text: #4a403a; --muted: #8a7f76; --line: #e3ddd4; --basil: #7a2e3a; --sage: #a8606a; --deep: #2a2320; color-scheme: light; }
-:root[data-variant="5"] header.top { background: rgba(20, 16, 14, .92); border-color: transparent; }
-:root[data-variant="5"] body::before { background: #14100e; }
+/* 5 · Masia (La Vella Farga + Mas d'en Bruno): dark hero, capitals with an italic word, basil accent */
+:root[data-variant="5"] { --ground: #f7f5f0; --paper: #ffffff; --cava: #C6BFAF; --ink: #1A3F20; --text: #26302a; --muted: #5f6a5f; --line: #e3dfd5; --basil: #2E6D2E; --sage: #79A57A; --deep: #1A3F20; color-scheme: light; }
+:root[data-variant="5"] header.top { background: rgba(15, 38, 20, .95); border-color: transparent; }
+:root[data-variant="5"] body::before { background: #0f2614; }
 :root[data-variant="5"] .top .logo, :root[data-variant="5"] .top .menu-btn { color: #f3efe4; }
 :root[data-variant="5"] .top .logo .iso { background: #f3efe4; }
 :root[data-variant="5"] .top nav a, :root[data-variant="5"] .top .lang { color: rgba(243, 239, 228, .72); }
-:root[data-variant="5"] .top nav.open { background: #14100e; }
+:root[data-variant="5"] .top nav.open { background: #0f2614; }
 :root[data-variant="5"] .top .right .btn { background: transparent; border-color: rgba(243, 239, 228, .7); color: #f3efe4; }
 :root[data-variant="5"] .hero { min-height: min(92vh, 900px); }
-:root[data-variant="5"] .hero::after { background: rgba(14, 10, 8, .55); }
+:root[data-variant="5"] .hero::after { background: rgba(10, 26, 14, .55); }
 :root[data-variant="5"] .hero .copy { padding-block: 40px 200px; }
 :root[data-variant="5"] .hero .mark { width: 120px; }
 :root[data-variant="5"] .hero-claim { display: block; color: #f3efe4; font-family: var(--display); font-size: clamp(26px, 3.4vw, 46px); max-width: 24ch; line-height: 1.2; }
 :root[data-variant="5"] .booking { margin-top: -110px; }
-:root[data-variant="5"] .booking form { background: rgba(20, 16, 14, .78); border-color: rgba(255, 255, 255, .2); }
+:root[data-variant="5"] .booking form { background: rgba(15, 38, 20, .8); border-color: rgba(255, 255, 255, .2); }
 :root[data-variant="5"] .booking .field { border-color: rgba(255, 255, 255, .18); }
 :root[data-variant="5"] .booking label { color: rgba(243, 239, 228, .7); }
 :root[data-variant="5"] .booking input, :root[data-variant="5"] .booking select { color: #f3efe4; color-scheme: dark; }
 :root[data-variant="5"] .booking .note { color: var(--muted); }
 :root[data-variant="5"] h2 { text-transform: uppercase; letter-spacing: .02em; font-size: clamp(30px, 4.4vw, 60px) !important; line-height: 1; }
-:root[data-variant="5"] h2[data-script]::after { content: attr(data-script); display: block; font-family: "Pinyon Script", cursive; text-transform: none; letter-spacing: 0; color: var(--basil); font-size: .95em; line-height: 1; margin-top: -.18em; }
+:root[data-variant="5"] h2[data-script]::after { content: attr(data-script); display: block; font-family: var(--display); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--basil); font-size: .6em; line-height: 1.1; margin-top: .1em; }
 :root[data-variant="5"] .head-row { justify-content: center; text-align: center; }
 :root[data-variant="5"] .head-row > div { justify-items: center; }
 :root[data-variant="5"] .head-row .btn { display: none; }
 :root[data-variant="5"] .history { background: var(--paper); }
 :root[data-variant="5"] .btn.solid { background: var(--basil); border-color: var(--basil); }
-:root[data-variant="5"] .quote, :root[data-variant="5"] .contact { background: #2a2320; }
-:root[data-variant="5"] .quote .iso { background: #c98a93; }
-:root[data-variant="5"] .quote cite, :root[data-variant="5"] .contact .label { color: #d9a4ab; }
+:root[data-variant="5"] .quote, :root[data-variant="5"] .contact { background: #1A3F20; }
+:root[data-variant="5"] .quote .iso { background: #79A57A; }
+:root[data-variant="5"] .quote cite, :root[data-variant="5"] .contact .label { color: #C6BFAF; }
 </style>
 
 
@@ -421,7 +426,7 @@ footer { padding-bottom: 96px; }
 </header>
 
 <section class="hero" id="inici" aria-label="Portada">
-  <img src="img/montserrat-vinyes.jpg" alt="Vinyes i pinedes amb la muntanya de Montserrat al fons">
+  <img id="heroImg" src="img/hero-vinyes-cel.jpg" alt="Vinyes amb la muntanya de Montserrat al fons">
   <div class="copy wrap">
     <img class="mark" src="img/logo-light.png" alt="La Casa Vella, 1898, El Bedorc">
     <img class="mark mark-dark" src="img/logo-dark.png" alt="La Casa Vella, 1898, El Bedorc">
@@ -648,21 +653,36 @@ footer { padding-bottom: 96px; }
   <button type="button" data-v="3" title="Inspirada en Son Brull">3<em>Santuari</em></button>
   <button type="button" data-v="4" title="Inspirada en Es Racó d'Artà i Off Grid">4<em>Respira</em></button>
   <button type="button" data-v="5" title="Inspirada en La Vella Farga i Mas d'en Bruno">5<em>Masia</em></button>
+  <span class="sep">Portada</span>
+  <button type="button" class="ph" data-h="1" style="--t: url(img/hero-vinyes-cel.jpg)" title="Vinyes i Montserrat, cel blau"><b>A</b></button>
+  <button type="button" class="ph" data-h="2" style="--t: url(img/hero-vinyes-capvespre.jpg)" title="Vinyes al capvespre"><b>B</b></button>
+  <button type="button" class="ph" data-h="3" style="--t: url(img/hero-vinyes-sol.jpg)" title="Vinyes amb llum de tarda"><b>C</b></button>
+  <button type="button" class="ph" data-h="4" style="--t: url(img/montserrat-vinyes.jpg)" title="Vinyes i pinedes"><b>D</b></button>
+  <button type="button" class="ph" data-h="5" style="--t: url(img/bedorc-capvespre.jpg)" title="El Bedorc al capvespre"><b>E</b></button>
 </div>
 
 <script>
-// Design proposals: #opcio-1 … #opcio-5 link straight to one
+// Design proposals and hero photo: #opcio-2 or #opcio-2-foto-3 link straight to a combination
 (() => {
-  const btns = [...document.querySelectorAll('.variants button')];
-  function setV(v, save) {
+  const HEROES = { 1: ['hero-vinyes-cel', 'center 62%'], 2: ['hero-vinyes-capvespre', 'center 40%'], 3: ['hero-vinyes-sol', 'center 40%'], 4: ['montserrat-vinyes', 'center 55%'], 5: ['bedorc-capvespre', '18% center'] };
+  const vBtns = [...document.querySelectorAll('.variants button[data-v]')], hBtns = [...document.querySelectorAll('.variants button[data-h]')];
+  const hero = document.getElementById('heroImg');
+  let v = '1', h = '1';
+  const save = () => { try { localStorage.setItem('lcv-variant', v); localStorage.setItem('lcv-hero', h); } catch (e) {} try { history.replaceState(null, '', '#opcio-' + v + '-foto-' + h); } catch (e) {} };
+  function apply() {
     document.documentElement.dataset.variant = v;
-    btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
-    if (save) { try { localStorage.setItem('lcv-variant', v); } catch (e) {} try { history.replaceState(null, '', '#opcio-' + v); } catch (e) {} }
+    vBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.v === v));
+    hBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.h === h));
+    hero.src = 'img/' + HEROES[h][0] + '.jpg'; hero.style.objectPosition = HEROES[h][1];
+    hero.alt = hBtns[h - 1].title;
   }
-  btns.forEach(b => b.addEventListener('click', () => setV(b.dataset.v, true)));
-  let v = (location.hash.match(/^#opcio-([1-5])$/) || [])[1];
-  if (!v) { try { v = localStorage.getItem('lcv-variant'); } catch (e) {} }
-  setV(/^[1-5]$/.test(v || '') ? v : '1', false);
+  vBtns.forEach(b => b.addEventListener('click', () => { v = b.dataset.v; apply(); save(); }));
+  hBtns.forEach(b => b.addEventListener('click', () => { h = b.dataset.h; apply(); save(); }));
+  const m = location.hash.match(/^#opcio-([1-5])(?:-foto-([1-5]))?$/);
+  if (m) { v = m[1]; h = m[2] || h; }
+  else { try { v = localStorage.getItem('lcv-variant') || v; h = localStorage.getItem('lcv-hero') || h; } catch (e) {} }
+  if (!/^[1-5]$/.test(v)) v = '1'; if (!/^[1-5]$/.test(h)) h = '1';
+  apply();
 })();
 const menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('mainNav');
 menuBtn.addEventListener('click', () => { const o = nav.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
