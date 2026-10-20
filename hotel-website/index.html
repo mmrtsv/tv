@@ -153,6 +153,9 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; 
 .inside-photos .d { display: none; }
 @media (max-width: 880px) { .inside { grid-template-columns: 1fr; } .inside-photos { grid-template-rows: 200px 160px; } }
 
+.intro-sub { color: var(--muted); max-width: 56ch; }
+.stays-intro { color: var(--muted); max-width: 60ch; margin: -20px 0 36px; }
+
 /* Name plaques */
 .plaques { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .plaques a { display: block; transition: transform .25s; }
@@ -443,7 +446,8 @@ footer { padding-bottom: 96px; }
 <section class="section intro" id="casa">
   <div class="wrap inner">
     <span class="label">La casa</span>
-    <p class="lede">Una casa de poble construïda entre 1898 i 1900 al cor del Bedorc, entre vinyes, oliveres i feixes de pedra, amb Montserrat a l'horitzó. L'hem restaurada per viure-la a poc a poc: bigues de fusta a la vista, parets blanques i finestres que donen a la muntanya.</p>
+    <p class="lede">La Casa Vella és la nostra casa de poble familiar al Bedorc, un petit nucli de la comarca de l'Anoia, envoltat de vinyes i turons. Murs de pedra originals, un jardí i tranquil·litat en cada racó.</p>
+    <p class="intro-sub">Barcelona és a una hora en cotxe, i els cellers del Penedès i els castells de la comarca encara més a prop. Però aquí, els matins comencen a poc a poc.</p>
   </div>
 </section>
 
@@ -452,8 +456,8 @@ footer { padding-bottom: 96px; }
     <div class="media" style="--collage: url(img/gerro.jpg)"><div class="photo"><img src="img/hab-balco.jpg" alt="Habitació amb bigues verdes, terra hidràulic i balcó" loading="lazy"></div></div>
     <div class="text">
       <span class="label">Restaurada amb respecte</span>
-      <h2 data-script="restaurada amb amor">Bigues de fusta, llum natural i el silenci del poble</h2>
-      <p>Hem conservat les bigues de fusta, el terra hidràulic i els armaris antics, tot pintat del verd fosc que ara també és el nostre color. Hi hem afegit només el que fa falta per estar-hi bé: banys nous, aire condicionat i llits còmodes.</p>
+      <h2 data-script="restaurada amb cura">Pedra, fusta i el silenci del poble</h2>
+      <p>Murs de pedra originals, sostres de fusta vista i espais restaurats amb cura: la casa conserva l'encant de l'arquitectura tradicional de l'Anoia amb tot el confort actual.</p>
       <a class="btn" href="#apartaments">Veure els allotjaments</a>
     </div>
   </div>
@@ -465,6 +469,7 @@ footer { padding-bottom: 96px; }
       <div><span class="label">Allotjaments</span><h2 data-script="les nostres estances">Dos apartaments i dues habitacions</h2></div>
       <a class="btn" href="#reservar">Consultar disponibilitat</a>
     </div>
+    <p class="stays-intro">Habitacions amb bany privat, apartaments complets per a estades més llargues i un jardí amb terrassa per gaudir de l'aire lliure.</p>
     <div class="stays">
       <article>
         <img src="img/nom-montserrat.png" alt="Apartament Montserrat" loading="lazy">
@@ -571,10 +576,11 @@ footer { padding-bottom: 96px; }
     <div class="text">
       <span class="label">L'entorn</span>
       <h2 data-script="el nostre entorn">El Bedorc, amb Montserrat a la vista</h2>
-      <p>Un entorn natural on conviuen la tradició, la natura i la vida rural: camins entre feixes de pedra seca, vinyes i oliveres, bosc i una fauna rica. Ideal per caminar, anar en bicicleta i desconnectar.</p>
+      <p>El Bedorc és un petit paradís al cor de l'Anoia: vinyes, boscos i camps de conreu a tocar dels cellers del Penedès. Des de la casa, la silueta de Montserrat marca l'horitzó.</p>
+      <p>A peu o en bicicleta, les rutes surten de la mateixa porta: camins entre vinyes, ermites i pobles amb història.</p>
       <ul class="dist">
         <li><span>Montserrat</span><span>Distància per confirmar</span></li>
-        <li><span>Barcelona</span><span>Distància per confirmar</span></li>
+        <li><span>Barcelona</span><span>1 h en cotxe</span></li>
         <li><span>Aeroport del Prat</span><span>Distància per confirmar</span></li>
       </ul>
     </div>
